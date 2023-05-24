@@ -115,11 +115,11 @@ Vue.createApp({
       }
       this.imageIndex = quoteBy[this.randomQuoteByWho];
 
-      popupContainerId.classList.add("show");
+      byWhoModalId.classList.add("show");
     },
     closeModal() {
-      showModalId.classList.remove("show");
-      popupContainerId.classList.remove("show");
+      endModalId.classList.remove("show");
+      byWhoModalId.classList.remove("show");
     },
     insideClick(event) {
       event.stopPropagation();
@@ -139,7 +139,7 @@ Vue.createApp({
         if (!isLastWord) this.userInput = "";
       }
       if (this.correctlyTypedWords.length === this.quoteWords.length) {
-        showModalId.classList.add("show");
+        endModalId.classList.add("show");
         this.userInput = "";
         this.endTyping();
       }
