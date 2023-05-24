@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test Grounds</title>
+  <title>ATLA Typing Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,7 +14,7 @@
       <h1>Avatar The Last Airbender
         <br>Typing Game 
       </h1>
-      <p1>Press <b>Spacebar</b> after each word! </p1>
+      <p1>Press <b>Spacebar</b> after each word!</p1>
     </div>
     <div>
       <input 
@@ -44,9 +44,9 @@
       </p>
     </div>
     <button @click="getRandomQuote" class="btn-primary">Start!</button>
-    <div v-if="showModal" class="modal" @click="outsideClick">
+    <div id="showModalId" class="modal" @click="closeModal">
       <div class="modal-content" @click="insideClick"  @keydown.enter="getRandomQuote">
-        <span @click="showModal = false" class="close-btn">&times;</span>
+        <span @click="closeModal" class="close-btn">&times;</span>
         <h2>You finished!</h2>
         <p2>
           You have a <b>{{ typingSpeed }} wpm</b> average
@@ -54,9 +54,9 @@
         </p2>
       </div>
     </div>
-    <div v-if="showPopupImg" class="popupContainer" @click="outsideClick">
+    <div id="popupContainerId" class="popupContainer" @click="closeModal">
       <div class="popupContent" @click="insideClick">
-        <span @click="showPopupImg = false" class="close-btn">&times;</span>
+        <span @click="closeModal" class="close-btn">&times;</span>
         <img :src="imageSource">
       </div>
     </div>

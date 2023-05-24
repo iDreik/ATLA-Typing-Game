@@ -1,5 +1,5 @@
 //if byWho === "Water? Earth? Fire? Air? nation" || personal symbolysms
-//update the page to have the nation colors and symbolisms
+// TODO: update the page to have the nation colors and symbolisms
 
 Vue.createApp({
   data() {
@@ -46,9 +46,6 @@ Vue.createApp({
       charactersTyped: 0,
       typingSpeed: 0,
       
-      showModal: false,
-      showPopupImg: false,
-
       userInputted: false,
     };
   },
@@ -118,11 +115,11 @@ Vue.createApp({
       }
       this.imageIndex = quoteBy[this.randomQuoteByWho];
 
-      this.showPopupImg = true;
+      popupContainerId.classList.add("show");
     },
-    outsideClick() {
-      this.showModal = false;
-      this.showPopupImg = false;
+    closeModal() {
+      showModalId.classList.remove("show");
+      popupContainerId.classList.remove("show");
     },
     insideClick(event) {
       event.stopPropagation();
@@ -142,15 +139,14 @@ Vue.createApp({
         if (!isLastWord) this.userInput = "";
       }
       if (this.correctlyTypedWords.length === this.quoteWords.length) {
-        this.showModal = true;
-        this.endTyping();
+        showModalId.classList.add("show");
         this.userInput = "";
+        this.endTyping();
       }
       const correctlyTypedSoFar =
         this.correctlyTypedWords.join("").length +
         this.correctlyTypedWords.length;
       this.charactersTyped = correctlyTypedSoFar + newVal.length;
-
     },
   },
 }).mount("#typingGame");
