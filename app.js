@@ -90,11 +90,6 @@ Vue.createApp({
     imageSource() {
       return this.imageSources[this.imageIndex];
     },
-    inputtedStart() {
-      if (this.userInputted) {
-        return this.startTyping();
-      }
-    },
   },
   methods: {
     getRandomQuote() {
@@ -166,6 +161,11 @@ Vue.createApp({
         this.correctlyTypedWords.join("").length +
         this.correctlyTypedWords.length;
       this.charactersTyped = correctlyTypedSoFar + newVal.length;
+    },
+    userInputted(newVal) {
+      if (newVal) {
+        this.startTyping();
+      }
     },
   },
 }).mount("#typingGame");
