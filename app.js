@@ -1,13 +1,13 @@
-//if byWho === "Water? Earth? Fire? Air? nation" || personal symbolysms
-// TODO: update the page to have the nation colors and symbolisms
+// TODO: update the page to have the byWho nation colors and symbolisms or personal symbolysms
+// TODO: copy quote button
 
 Vue.createApp({
   mounted() {
     document.querySelector("body").addEventListener("click", () => {this.$refs.userInput.focus()});
     setTimeout(() => {
-      this.getRandomQuote();
       this.isLoading = false;
-    }, 3000);
+      this.getRandomQuote();
+    }, 1000);
   },
   data() {
     return {
