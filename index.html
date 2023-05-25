@@ -12,19 +12,21 @@
   <div id="typingGame">
     <div id="header">
       <h1>Avatar The Last Airbender
-        <br>Typing Game 
+        <br>Typing Game
       </h1>
-      <p1>Press <b>Spacebar</b> after each word!</p1>
+      <p1><em>Press <b>Spacebar</b> after each word!</p1>
+      <br><br>
+      <p2>The game will <b>Start</b> once you <b>Press a key</b></em></p2>
     </div>
     <div>
       <input 
-      v-if="randomQuote" 
       ref="userInput" 
       v-model="userInput" 
       type="text" 
-      placeholder="Type here!"
-      :disabled="correctlyTypedWords.length === quoteWords.length" >
-      <p v-if="randomQuote">
+      :disabled="correctlyTypedWords.length === quoteWords.length"
+      >
+      <div v-if="isLoading" class="loading-spinner"></div>
+      <p v-if="!isLoading">
         <span 
           v-for="(charObj, index) in quoteCharacters" 
           :key="index"
@@ -43,21 +45,22 @@
         </br>
       </p>
     </div>
-    <button @click="getRandomQuote" class="btn-primary">Start!</button>
+    <button @click="getRandomQuote" class="btn-primary">Try Again!</button>
     <div id="endModalId" class="endModal" @click="closeModal">
       <div class="endModal-content" @click="insideClick">
         <span @click="closeModal" class="close-btn">&times;</span>
         <h2>You finished!</h2>
         <p2>
           You have a <b>{{ typingSpeed }} wpm</b> average
-          <br><br>Press <b>Start!</b> to try again
+          <br><br>Wanna <b>Try Again?</b>
         </p2>
       </div>
     </div>
     <div id="byWhoModalId" class="byWhoModal" @click="closeModal">
       <div class="byWhoModal-content" @click="insideClick">
         <span @click="closeModal" class="close-btn">&times;</span>
-        <img :src="imageSource">
+        <p v-if="imgLoading" class="img-loading-spinner"></p>
+        <img v-if ="!imgLoading" :src="imageSource">
       </div>
     </div>
   </div>

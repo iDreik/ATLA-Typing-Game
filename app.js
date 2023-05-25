@@ -2,6 +2,13 @@
 // TODO: update the page to have the nation colors and symbolisms
 
 Vue.createApp({
+  mounted() {
+    document.querySelector("body").addEventListener("click", () => {this.$refs.userInput.focus()});
+    setTimeout(() => {
+      this.getRandomQuote();
+      this.isLoading = false;
+    }, 3000);
+  },
   data() {
     return {
       quotes: [
@@ -37,6 +44,7 @@ Vue.createApp({
       ],
 
       userInput: "",
+      userInputted: false,
       randomQuote: null,
       correctlyTypedWords: [],
 
@@ -45,8 +53,9 @@ Vue.createApp({
       wordsTyped: 0,
       charactersTyped: 0,
       typingSpeed: 0,
-      
-      userInputted: false,
+
+      isLoading: true,
+      imgLoading: false,
     };
   },
   computed: {
@@ -78,9 +87,14 @@ Vue.createApp({
     quoteWords() {
       return this.randomQuote ? this.randomQuote.map(char => char.char).join("").split(" ") : [];
     },
-    imageSource(){
-      return this.imageSources[this.imageIndex]
-    }
+    imageSource() {
+      return this.imageSources[this.imageIndex];
+    },
+    inputtedStart() {
+      if (this.userInputted) {
+        return this.startTyping();
+      }
+    },
   },
   methods: {
     getRandomQuote() {
@@ -91,7 +105,7 @@ Vue.createApp({
       this.correctlyTypedWords = [];
       this.$nextTick(() => {
         this.$refs.userInput.focus();
-        this.startTyping();
+        this.userInputted = false;
       });
       this.charactersTyped = 0;
     },
@@ -114,6 +128,11 @@ Vue.createApp({
         "Lion Turtle": 4,
       }
       this.imageIndex = quoteBy[this.randomQuoteByWho];
+      this.imgLoading = true;
+
+      setTimeout(() => {
+        this.imgLoading = false;
+      }, 150),
 
       byWhoModalId.classList.add("show");
     },
