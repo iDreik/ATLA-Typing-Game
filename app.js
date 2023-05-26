@@ -1,6 +1,3 @@
-// TODO: update the page to have the byWho nation colors and symbolisms or personal symbolysms
-// TODO: copy quote button
-
 Vue.createApp({
   mounted() {
     document.querySelector("body").addEventListener("click", () => {this.$refs.userInput.focus()});
@@ -56,6 +53,7 @@ Vue.createApp({
 
       isLoading: true,
       imgLoading: false,
+      copied: false,
     };
   },
   computed: {
@@ -137,6 +135,18 @@ Vue.createApp({
     },
     insideClick(event) {
       event.stopPropagation();
+    },
+    copyText() {
+      const textArea = document.createElement("textarea");
+      textArea.value = '"' + this.quoteWords.join(" ") + '"' + " -" + this.randomQuoteByWho;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+      copyMsgId.classList.add("show");
+      setTimeout(() => {
+        copyMsgId.classList.remove("show");
+      }, 800)
     },
   },
   watch: {

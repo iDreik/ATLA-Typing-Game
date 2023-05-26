@@ -27,7 +27,7 @@ h1 {
 
 input {
   opacity: 0;
-  user-select: none;
+  pointer-events: none;
 }
 
 p {
@@ -82,17 +82,47 @@ byWho {
   opacity: 0.8;
   transition: opacity 0.3s ease;
   line-height: 2.5;
-  user-select: none;
 }
 
 byWho:hover {
   cursor: pointer;
   opacity: 1;
   color: #333;
-  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
 }
 
-button {
+.copyTextButton {
+  opacity: 0.6;
+  position: relative;
+  float: right;
+  top: 5px;
+  transition: opacity 0.3s ease;
+}
+
+.copyTextButton:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.copyMsg {
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  font-size: 12px;
+  pointer-events: none;
+  position: relative;
+  float: right;
+  right: 3px;
+  top: 1px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.copyMsg.show {
+  opacity: 1;
+}
+
+.tryAgainButton {
   display: block;
   width: 100%;
   padding: 10px;
@@ -106,7 +136,7 @@ button {
   user-select: none;
 }
 
-button:hover {
+.tryAgainButton:hover {
   background-color: #0056b3;
 }
 
@@ -125,7 +155,6 @@ button:hover {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  z-index: 5;
 }
 
 .byWhoModal.show {
@@ -146,7 +175,6 @@ button:hover {
   text-align: center;
   position: relative;
   user-select: none;
-  z-index: 5;
 }
 
 img {
@@ -190,12 +218,12 @@ img {
   right: 10px;
   font-size: 24px;
   color: #333;
-  cursor: pointer;
   transform: translate(30%, -40%);
   user-select: none;
 }
 
 .close-btn:hover {
+  cursor: pointer;
   color: #ff0000;
 }
 

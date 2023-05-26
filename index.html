@@ -34,16 +34,18 @@
             'incorrect': charObj.isDefault ? false : charObj.isIncorrect,
           }"
         >
-          {{charObj.char}}
+          {{ charObj.char }}
         </span>
         <br>
           <byWho @click="changeImg">
             - {{randomQuoteByWho}}
           </byWho>
+          <img src="./copy-text.svg" class="copyTextButton" @click="copyText">
+          <p3 id="copyMsgId" class="copyMsg">Copied!</p3>
         </br>
+        <button @click="getRandomQuote" class="tryAgainButton">Try Again!</button>
       </p>
     </div>
-    <button @click="getRandomQuote" class="btn-primary">Try Again!</button>
     <div id="endModalId" class="endModal" @click="closeModal">
       <div class="endModal-content" @click="insideClick">
         <span @click="closeModal" class="close-btn">&times;</span>
