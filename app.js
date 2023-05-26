@@ -53,7 +53,6 @@ Vue.createApp({
 
       isLoading: true,
       imgLoading: false,
-      copied: false,
     };
   },
   computed: {
