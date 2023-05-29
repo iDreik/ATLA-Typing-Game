@@ -41,7 +41,7 @@
             - {{randomQuoteByWho}}
           </byWho>
           <img src="./copy-text.svg" class="copyTextButton" @click="copyText">
-          <p3 id="copyMsgId" class="copyMsg">Copied!</p3>
+          <p2 id="copyMsgId" class="copyMsg">Copied!</p2>
         </br>
         <button @click="getRandomQuote" class="tryAgainButton">Try Again!</button>
       </p>
@@ -50,10 +50,12 @@
       <div class="endModal-content" @click="insideClick">
         <span @click="closeModal" class="close-btn">&times;</span>
         <h2>You finished!</h2>
-        <p2>
-          You have a <b>{{ typingSpeed }} wpm</b> average
-          <br><br>Wanna <b>Try Again?</b>
-        </p2>
+        <p3>
+          You have a <em><b>{{ typingSpeed }} wpm</b></em> average!
+          <br><br>Highscore: <em><b>{{highScore}} wpm</b></em>
+          <br><br>
+          <button @click="saveHighScore" class="saveHighScoreButton">Save highscore</button>
+        </p3>
       </div>
     </div>
     <div id="byWhoModalId" class="byWhoModal" @click="closeModal">

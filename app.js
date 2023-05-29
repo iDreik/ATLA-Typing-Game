@@ -5,6 +5,7 @@ Vue.createApp({
       this.isLoading = false;
       this.getRandomQuote();
     }, 1000);
+    this.highScore = localStorage.getItem('localHighScoreItem') || sessionStorage.getItem('sessionHighScoreItem');
   },
   data() {
     return {
@@ -50,6 +51,7 @@ Vue.createApp({
       wordsTyped: 0,
       charactersTyped: 0,
       typingSpeed: 0,
+      highScore: null,
 
       isLoading: true,
       imgLoading: false,
@@ -110,6 +112,8 @@ Vue.createApp({
       const minutes = timeDiff / 60; // Time difference in minutes
       const correctWords = this.correctlyTypedWords.length;
       this.typingSpeed = Math.round(correctWords / minutes);
+      this.typingSpeed > this.highScore ? this.highScore = this.typingSpeed : this.highScore = this.highScore;
+      sessionStorage.setItem("sessionHighScoreItem", this.highScore);
     },
     changeImg () {
       const quoteBy = {
@@ -146,6 +150,9 @@ Vue.createApp({
       setTimeout(() => {
         copyMsgId.classList.remove("show");
       }, 800)
+    },
+    saveHighScore() {
+      localStorage.setItem("localHighScoreItem", this.highScore);
     },
   },
   watch: {
