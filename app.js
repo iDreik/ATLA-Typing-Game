@@ -149,10 +149,14 @@ Vue.createApp({
       copyMsgId.classList.add("show");
       setTimeout(() => {
         copyMsgId.classList.remove("show");
-      }, 800)
+      }, 1000)
     },
     saveHighScore() {
       localStorage.setItem("localHighScoreItem", this.highScore);
+      savedMsgId.classList.add("show");
+      setTimeout(() => {
+        savedMsgId.classList.remove("show");
+      }, 1000)
     },
   },
   watch: {

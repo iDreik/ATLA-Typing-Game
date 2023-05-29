@@ -238,6 +238,25 @@ img {
   background-color: #0056b3;
 }
 
+.savedMsg {
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  font-size: 12px;
+  pointer-events: none;
+  position: relative;
+  float: left;
+  top: 50px;
+  right: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.savedMsg.show {
+  opacity: 1;
+}
+
 .close-btn {
   position: absolute;
   top: 10px;
