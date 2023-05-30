@@ -36,6 +36,16 @@ p {
   user-select: none;
 }
 
+.pContent {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.pContent.show {
+  opacity: 1;
+  visibility: visible;
+}
+
 p span {
   font-size: 20px;
   font-weight: bold;
@@ -72,7 +82,7 @@ br {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-byWho {
+.byWho {
   color: #555;
   font-size: 18px;
   font-weight: bold;
@@ -80,13 +90,18 @@ byWho {
   margin-top: 10px;
   opacity: 0.8;
   transition: opacity 0.3s ease;
+  transition: font-size 0.2s ease;
   line-height: 2.5;
 }
 
-byWho:hover {
+.byWho:hover {
   cursor: pointer;
   opacity: 1;
   color: #333;
+}
+
+.byWho.active {
+  font-size: 16px;
 }
 
 highScore {
@@ -104,11 +119,16 @@ highScore {
   float: right;
   top: 12px;
   transition: opacity 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 .copyTextButton:hover {
   opacity: 1;
   cursor: pointer;
+}
+
+.copyTextButton:active {
+  transform: scale(0.80);
 }
 
 .copyMsg {
@@ -118,10 +138,12 @@ highScore {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   font-size: 12px;
   pointer-events: none;
-  position: relative;
-  float: right;
-  right: 3px;
-  top: 8px;
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 300px;
+  text-align: center;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
@@ -141,11 +163,16 @@ highScore {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  transition: transform 0.2s ease;
   user-select: none;
 }
 
 .tryAgainButton:hover {
   background-color: #0056b3;
+}
+
+.tryAgainButton:active {
+  transform: scale(0.95);
 }
 
 .byWhoModal {
@@ -231,11 +258,16 @@ img {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  transition: transform 0.2s ease;
   user-select: none;
 }
 
 .saveHighScoreButton:hover {
   background-color: #0056b3;
+}
+
+.saveHighScoreButton:active {
+  transform: scale(0.95);
 }
 
 .savedMsg {
@@ -245,10 +277,13 @@ img {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   font-size: 12px;
   pointer-events: none;
-  position: relative;
-  float: left;
-  top: 50px;
-  right: 10px;
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 300px;
+  text-align: center;
+  user-select: none;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
@@ -281,6 +316,8 @@ img {
   animation: spin 1s linear infinite;
   margin: auto;
   margin-bottom: 30px;
+  position: relative;
+  top: 40px;
 }
 
 .img-loading-spinner {

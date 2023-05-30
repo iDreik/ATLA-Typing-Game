@@ -24,7 +24,7 @@
       :disabled="correctlyTypedWords.length === quoteWords.length"
       >
       <div v-if="isLoading" class="loading-spinner"></div>
-      <p v-if="!isLoading">
+      <p id="pContentId" class="pContent">
         <span 
           v-for="(charObj, index) in quoteCharacters" 
           :key="index"
@@ -37,11 +37,11 @@
           {{ charObj.char }}
         </span>
         <br>
-          <byWho @click="changeImg">
-            - {{randomQuoteByWho}}
-          </byWho>
+          <span @click="changeImg" id="byWhoId" class="byWho">
+            {{ randomQuoteByWho }}
+          </span>
           <img src="./copy-text.svg" class="copyTextButton" @click="copyText">
-          <p2 id="copyMsgId" class="copyMsg">Copied!</p2>
+          <span2 id="copyMsgId" class="copyMsg">Copied!</span2>
         </br>
         <button @click="getRandomQuote" class="tryAgainButton">Try Again!</button>
       </p>
@@ -52,17 +52,23 @@
         <h2>You finished!</h2>
         <p3>
           You have a <em><b>{{ typingSpeed }} wpm</b></em> average!
-          <br><br>Highscore: <em><b>{{highScore}} wpm</b></em>
-          <br>
-          <p4 id="savedMsgId" class="savedMsg">Saved!</p4>
-          <button @click="saveHighScore" class="saveHighScoreButton">Save highscore</button>
+          <br><br>
+          <span v-if="highScore === typingSpeed">
+            <b><em>{{ highScoreMsg }}</em></b>
+          </span>
+          <span v-else>
+            {{ highScoreMsg }}<em><b>{{ highScore }} wpm</b></em>
+          </span>
+          <br><br>
+          <button @click="saveHighScore" class="saveHighScoreButton">Save Highscore</button>
+          <span id="savedMsgId" class="savedMsg">Saved!</span>
         </p3>
       </div>
     </div>
     <div id="byWhoModalId" class="byWhoModal" @click="closeModal">
       <div class="byWhoModal-content" @click="insideClick">
         <span @click="closeModal" class="close-btn">&times;</span>
-        <p v-if="imgLoading" class="img-loading-spinner"></p>
+        <p5 v-if="imgLoading" class="img-loading-spinner"></p5>
         <img v-if ="!imgLoading" :src="imageSource">
       </div>
     </div>
