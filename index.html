@@ -53,7 +53,7 @@
         <p3>
           You have a <em><b>{{ typingSpeed }} wpm</b></em> average!
           <br><br>
-          <span v-if="highScore === typingSpeed">
+          <span v-if="highScoreMsg === 'New Highscore!'">
             <b><em>{{ highScoreMsg }}</em></b>
           </span>
           <span v-else>
