@@ -14,7 +14,7 @@
       <h1>Avatar The Last Airbender
         <br>Typing Game
       </h1>
-      <p1><em>The game will <b>Start</b> once you <b>Press a key</b></em></p1>
+      <span><em>The game will <b>Start</b> once you <b>Start Typing</b></em></span>
     </div>
     <div>
       <input 
@@ -43,33 +43,70 @@
           <img src="./copy-text.svg" class="copyTextButton" @click="copyText">
           <span2 id="copyMsgId" class="copyMsg">Copied!</span2>
         </br>
-        <button @click="getRandomQuote" class="tryAgainButton">Try Again!</button>
+        <button @click="getRandomQuote" class="newQuoteButton">New Quote!</button>
+        <button @click="getHighScores" class="highScoresButton">Highscores</button>
       </p>
+    </div>
+    <div id="byWhoModalId" class="byWhoModal" @click="closeModal">
+      <div class="byWhoModal-content" @click="insideClick">
+        <span @click="closeModal" class="close-btn">&times;</span>
+        <img :src="imageSource">
+      </div>
+    </div>
+    <div id="highScoresModalId" class="highScoresModal" @click="closeModal">
+      <div class="highScoresModal-content" @click="insideClick">
+        <span @click="closeModal" class="close-btn">&times;</span>
+        <h1>Highscores:</h1>
+        <span v-if="!highScoreListMapped.length">
+          No highscores yet!
+        </span>
+        <span v-for="highScoreItem in highScoreListMapped">
+          <span>
+            "{{ highScoreItem.quote }}"
+            <br>  
+          </span>
+          <span>
+            <span class="hsiByWho">
+              <b>{{ highScoreItem.byWho }}</b>
+            </span>
+            <span class="hsiScore">
+              <em><b>{{ highScoreItem.score }} wpm</b></em>
+            </span>
+            <span class="separationLine">
+              __________________________________
+            </span>  
+          </span>
+          <br><br>
+        </span>
+        <button @click="saveHighScore" class="saveHighScoreButton" v-if="highScoreListMapped.length">Save Highscores</button>
+        <span id="savedMsgId" class="savedMsg">Saved!</span>
+      </div>
     </div>
     <div id="endModalId" class="endModal" @click="closeModal">
       <div class="endModal-content" @click="insideClick">
         <span @click="closeModal" class="close-btn">&times;</span>
         <h2>You finished!</h2>
-        <p3>
-          You have a <em><b>{{ typingSpeed }} wpm</b></em> average!
-          <br><br>
-          <span v-if="highScoreMsg === 'New Highscore!'">
-            <b><em>{{ highScoreMsg }}</em></b>
+        <span>
+            You have a <em><b>{{ typingSpeed }} wpm</b></em> average!
+          <span v-if="quoteHighScoreMsg === 'New Quote Highscore!'">
+            <br><br>
+            <em><b>{{ quoteHighScoreMsg }}</b></em>
           </span>
           <span v-else>
+            <br><br>
+            {{ quoteHighScoreMsg }} <em><b>{{ highScoreQuote }} wpm</b></em>
+          </span>
+          <span v-if="highScoreMsg === 'New Overall Highscore!'">
+            <br><br>
+            <em><b>{{ highScoreMsg }}</b></em>
+          </span>
+          <span v-else>
+            <br><br>
             {{ highScoreMsg }}<em><b>{{ highScore }} wpm</b></em>
           </span>
           <br><br>
-          <button @click="saveHighScore" class="saveHighScoreButton">Save Highscore</button>
-          <span id="savedMsgId" class="savedMsg">Saved!</span>
-        </p3>
-      </div>
-    </div>
-    <div id="byWhoModalId" class="byWhoModal" @click="closeModal">
-      <div class="byWhoModal-content" @click="insideClick">
-        <span @click="closeModal" class="close-btn">&times;</span>
-        <p5 v-if="imgLoading" class="img-loading-spinner"></p5>
-        <img v-if ="!imgLoading" :src="imageSource">
+          <button @click="getRandomQuote" class="newQuoteButton2">New Quote!</button>
+        </span>
       </div>
     </div>
   </div>
