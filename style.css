@@ -50,7 +50,7 @@ p {
   visibility: visible;
 }
 
-p span {
+.p-span {
   font-size: 20px;
   font-weight: bold;
   line-height: 1.5;
@@ -87,15 +87,17 @@ br {
 }
 
 .byWho {
+  position: relative;
+  left: -3px;
   color: #555;
   font-size: 18px;
   font-weight: bold;
-  text-align: right;
   margin-top: 10px;
+  margin-bottom: 10px;
   opacity: 0.8;
-  transition: opacity 0.3s ease;
-  transition: font-size 0.2s ease;
-  line-height: 2.5;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  border: none;
+  background-color: #fff;
 }
 
 .byWho:hover {
@@ -104,8 +106,8 @@ br {
   color: #333;
 }
 
-.byWho.active {
-  font-size: 16px;
+.byWho:active {
+  transform: scale(0.85);
 }
 
 .copyTextButton {
@@ -114,9 +116,8 @@ br {
   opacity: 0.6;
   position: relative;
   float: right;
-  top: 12px;
-  transition: opacity 0.3s ease;
-  transition: transform 0.2s ease;
+  top: 10px;
+  transition: opacity 0.3s ease, transform 0.2s ease;
 }
 
 .copyTextButton:hover {
@@ -158,8 +159,7 @@ br {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  transition: transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   user-select: none;
 }
 
@@ -181,8 +181,7 @@ br {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  transition: transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   user-select: none;
 }
 
@@ -259,35 +258,96 @@ img {
 }
 
 .highScoresModal-content {
-  top: -5px;
-  max-width: 300px;
-  padding-top: 23.16px;
-  padding-bottom: 23.16px;
-  padding-right: 25px;
-  padding-left: 25px;
+  position: relative;
+  max-width: 400px;
+  padding: 20px;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   text-align: center;
-  position: relative;
   max-height: 80%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
-.hsiScore {
-  position: relative;
-  top: 10px;
-  float: left;
+.highScoresModal-content h1 {
+  user-select: none;
+}
+
+.hsiQuote-container {
+  padding: 10px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.hsiQuote {
+  font-style: italic;
+  color: #333;
 }
 
 .hsiByWho {
   position: relative;
-  top: 10px;
+  top: 5px;
+  font-style: italic;
+  color: #333;
+}
+
+.hsiScore {
+  position: relative;
+  float: left;
+  top: 11px;
+}
+
+.deleteHSQuoteButton {
+  position: relative;
   float: right;
+  top: 7px;
+  padding: 5px;
+  width: 60px;
+  background-color: #dd1313;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.deleteHSQuoteButton:hover {
+  background-color: #a91a1a;
+}
+
+.deleteHSQuoteButton:active {
+  transform: scale(0.9);
+}
+
+.deletedMsg {
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  font-size: 12px;
+  pointer-events: none;
+  position: fixed;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 300px;
+  text-align: center;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.deletedMsg.show {
+  opacity: 1;
 }
 
 .separationLine {
-  user-select: none;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  border: none;
+  border-top: 1px solid #333;
 }
 
 .saveHighScoreButton {
@@ -300,9 +360,8 @@ img {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  transition: transform 0.2s ease;
   user-select: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .saveHighScoreButton:hover {
@@ -375,8 +434,7 @@ img {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  transition: transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   user-select: none;
 }
 

@@ -28,6 +28,7 @@
         <span 
           v-for="(charObj, index) in quoteCharacters" 
           :key="index"
+          class="p-span"
           :class="{
             'default': charObj.isDefault,
             'correct': charObj.isDefault ? false : charObj.isCorrect, 
@@ -37,11 +38,11 @@
           {{ charObj.char }}
         </span>
         <br>
-          <span @click="changeImg" id="byWhoId" class="byWho">
+          <button @click="changeImg" id="byWhoId" class="byWho">
             {{ randomQuoteByWho }}
-          </span>
+          </button>
           <img src="./copy-text.svg" class="copyTextButton" @click="copyText">
-          <span2 id="copyMsgId" class="copyMsg">Copied!</span2>
+          <span id="copyMsgId" class="copyMsg">Copied!</span>
         </br>
         <button @click="getRandomQuote" class="newQuoteButton">New Quote!</button>
         <button @click="getHighScores" class="highScoresButton">Highscores</button>
@@ -58,28 +59,27 @@
         <span @click="closeModal" class="close-btn">&times;</span>
         <h1>Highscores:</h1>
         <span v-if="!highScoreListMapped.length">
-          No highscores yet!
+          No highscores yet :(
         </span>
-        <span v-for="highScoreItem in highScoreListMapped">
-          <span>
-            "{{ highScoreItem.quote }}"
-            <br>  
-          </span>
-          <span>
+        <span v-for="(highScoreItem, index2) in highScoreListMapped">
+          <div class="hsiQuote-container">
+            <span class ="hsiQuote">
+              "{{ highScoreItem.quote }}"
+              <br>
+            </span>
             <span class="hsiByWho">
               <b>{{ highScoreItem.byWho }}</b>
             </span>
-            <span class="hsiScore">
-              <em><b>{{ highScoreItem.score }} wpm</b></em>
-            </span>
-            <span class="separationLine">
-              __________________________________
-            </span>  
+          </div>
+          <span class="hsiScore">
+            <em><b>{{ highScoreItem.score }} wpm</b></em>
           </span>
-          <br><br>
+          <button class="deleteHSQuoteButton" @click="deleteHSQuote(index2)">Delete</button>
+          <hr class="separationLine">
         </span>
         <button @click="saveHighScore" class="saveHighScoreButton" v-if="highScoreListMapped.length">Save Highscores</button>
         <span id="savedMsgId" class="savedMsg">Saved!</span>
+        <span id="deletedMsgId" class="deletedMsg">Deleted!</span>
       </div>
     </div>
     <div id="endModalId" class="endModal" @click="closeModal">

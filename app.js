@@ -1,5 +1,3 @@
-// TODO: Highscores button, inside theres a modal with a table of highscores and in which quote they got it
-
 Vue.createApp({
   mounted() {
     document.querySelector("html").addEventListener("click", () => {this.$refs.userInput.focus()});
@@ -55,6 +53,7 @@ Vue.createApp({
       userInput: "",
       userInputted: false,
       randomQuote: null,
+      randomQuoteByWho: "",
       correctlyTypedWords: [],
 
       startTime: null,
@@ -142,8 +141,8 @@ Vue.createApp({
         this.quoteHighScoreMsg = "New Quote Highscore!";
       }
       else {
-        this.quoteHighScoreMsg = "Quote Highscore: ";
         this.highScoreQuote = this.highScoreList[this.currentQuoteId];
+        this.quoteHighScoreMsg = "Quote Highscore: ";
       }
       if (this.typingSpeed > this.highScore) {
         this.highScore = this.typingSpeed;
@@ -155,11 +154,6 @@ Vue.createApp({
       }
     },
     changeImg () {
-      byWhoId.classList.add("active");
-      setTimeout(() => {
-        byWhoId.classList.remove("active");
-      }, 80);
-
       const quoteBy = {
         "- Aang": 0,
         "- Iroh": 1,
@@ -204,6 +198,24 @@ Vue.createApp({
     },
     getHighScores() {
       highScoresModalId.classList.add("show");
+    },
+    deleteHSQuote(index2) {
+      const hsListId = this.highScoreListMapped[index2]?.id;
+      const hsListScore = this.highScoreListMapped[index2].score;
+      if (hsListId) {
+        this.highScoreListMapped.splice(index2, 1);
+        delete this.highScoreList[hsListId];
+      }
+      if (hsListScore === this.highScore) {
+        this.highScoreListMapped.length ? 
+          this.highScore = Math.max(...Object.values(this.highScoreList))
+          : this.highScore = 0;
+        sessionStorage.setItem("sessionOverallHSItem", this.highScore);
+      }
+      deletedMsgId.classList.add("show");
+      setTimeout(() => {
+        deletedMsgId.classList.remove("show");
+      }, 1000)
     },
   },
   watch: {
