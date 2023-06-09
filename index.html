@@ -60,6 +60,7 @@
         <h1>Highscores:</h1>
         <span v-if="!highScoreListMapped.length">
           No highscores yet :(
+          <br><br>
         </span>
         <span v-for="(highScoreItem, index2) in highScoreListMapped">
           <div class="hsiQuote-container">
@@ -77,7 +78,7 @@
           <button class="deleteHSQuoteButton" @click="deleteHSQuote(index2)">Delete</button>
           <hr class="separationLine">
         </span>
-        <button @click="saveHighScore" class="saveHighScoreButton" v-if="highScoreListMapped.length">Save Highscores</button>
+        <button @click="saveHighScore" class="saveHighScoreButton">Save Highscores</button>
         <span id="savedMsgId" class="savedMsg">Saved!</span>
         <span id="deletedMsgId" class="deletedMsg">Deleted!</span>
       </div>
