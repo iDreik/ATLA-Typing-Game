@@ -7,11 +7,51 @@ body {
   zoom: 1.9;
 }
 
+.fireBody {
+  background-color: #8a1212;
+  background-image: radial-gradient(#fbc25e, #ab0e0e);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.waterBody {
+  background-color: #0f5aa5;
+  background-image: radial-gradient(#86faf6, #0f5aa5);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.airBody {
+  background-color: #606060;
+  background-image: radial-gradient(#fff, #606060);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.earthBody {
+  background-color: #704c21;
+  background-image: radial-gradient(#c7a876, #704c21);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.spiritBody {
+  background-color: #FFFFFF; /* White */
+  background-image: linear-gradient(to bottom, #76e4fc, #fff); /* Radial gradient from light gray to white */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
 #typingGame {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: #ffffffdb;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -97,7 +137,7 @@ br {
   opacity: 0.8;
   transition: opacity 0.3s ease, transform 0.2s ease;
   border: none;
-  background-color: #fff;
+  background-color: #ffffff00;
 }
 
 .byWho:hover {
